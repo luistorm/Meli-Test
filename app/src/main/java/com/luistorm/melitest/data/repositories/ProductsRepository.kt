@@ -1,4 +1,4 @@
-package com.luistorm.melitest.domain.repositories
+package com.luistorm.melitest.data.repositories
 
 import com.luistorm.melitest.data.services.ProductsService
 

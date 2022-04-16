@@ -1,16 +1,16 @@
 package com.luistorm.melitest.presentation.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.luistorm.melitest.domain.repositories.ProductsRepository
+import com.luistorm.melitest.domain.usecases.SearchUseCase
 import com.luistorm.melitest.presentation.utils.applySchedulers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(private val productsRepository: ProductsRepository) : ViewModel() {
+class SearchViewModel @Inject constructor(private val searchUseCase: SearchUseCase) : ViewModel() {
 
     fun search() {
-        productsRepository.searchQuery("Moto G100")
+        searchUseCase.search("Moto G100")
             .applySchedulers()
             .subscribe({
                 val x = 0
