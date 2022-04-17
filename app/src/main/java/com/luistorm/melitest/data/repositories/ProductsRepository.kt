@@ -10,4 +10,5 @@ class ProductsRepository(private val productsService: ProductsService) {
 
     fun getCategories() = productsService.getCategories()
 
+    fun getItemsBySeller(sellerId: String) = productsService.getItemsBySeller(sellerId)
 }

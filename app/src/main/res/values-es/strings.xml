@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Meli Test</string>
+    <string name="price">Precio: $ %1s</string>
     <string name="available_quantity">Disponibles: %1s</string>
     <string name="new_item">Nuevo</string>
     <string name="used_item">Usado</string>
     <string name="free_delivery">Envío Gratis</string>
     <string name="search_product">Buscar Producto</string>
+    <string name="other_products">Otros Productos Del Vendedor</string>
+    <string name="attributes">Atributos:\n%1s</string>
 </resources>

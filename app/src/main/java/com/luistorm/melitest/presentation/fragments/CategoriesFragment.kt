@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.luistorm.melitest.R
 import com.luistorm.melitest.databinding.FragmentCategoriesBinding
+import com.luistorm.melitest.domain.models.Product
 import com.luistorm.melitest.presentation.adapters.CategoriesAdapter
 import com.luistorm.melitest.presentation.viewmodels.CategoriesViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,8 +42,17 @@ class CategoriesFragment : Fragment() {
         binding.recyclerViewCategories.apply {
             layoutManager = LinearLayoutManager(this@CategoriesFragment.requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
-            adapter = CategoriesAdapter()
+            adapter = CategoriesAdapter {
+                goToProductDetail(it)
+            }
         }
+    }
+
+    private fun goToProductDetail(product:Product) {
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.add(R.id.fragmentsContainer, ProductDetailFragment.newInstance(product), "")
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 
     private fun initObservers() {

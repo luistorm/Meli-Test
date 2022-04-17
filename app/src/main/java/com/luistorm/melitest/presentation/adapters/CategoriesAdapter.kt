@@ -7,10 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.luistorm.melitest.databinding.CategoriesItemViewBinding
 import com.luistorm.melitest.domain.models.Category
+import com.luistorm.melitest.domain.models.Product
+import com.luistorm.melitest.presentation.utils.SERVICIOS
 
-private const val SERVICIOS = "Servicios"
-
-class CategoriesAdapter(var categories: List<Category> = emptyList()): RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
+class CategoriesAdapter(var categories: List<Category> = emptyList(),
+                        private val onItemSelectedListener: (Product) -> Unit): RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -37,7 +38,7 @@ class CategoriesAdapter(var categories: List<Category> = emptyList()): RecyclerV
                     this.recyclerViewItems.apply {
                         layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
                         setHasFixedSize(true)
-                        adapter = CategoryItemAdapter(it.products)
+                        adapter = CategoryItemAdapter(it.products, onItemSelectedListener)
                     }
                 }
             }

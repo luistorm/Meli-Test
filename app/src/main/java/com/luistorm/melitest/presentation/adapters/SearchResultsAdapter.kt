@@ -9,11 +9,11 @@ import com.bumptech.glide.Glide
 import com.luistorm.melitest.R
 import com.luistorm.melitest.databinding.SearchItemViewBinding
 import com.luistorm.melitest.domain.models.Product
+import com.luistorm.melitest.presentation.utils.NEW
 import com.luistorm.melitest.presentation.utils.transformToHttps
 
-private const val NEW = "new"
-
-class SearchResultsAdapter(var searchResults: List<Product> = emptyList()): RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
+class SearchResultsAdapter(var searchResults: List<Product> = emptyList(),
+                           private val onItemSelectedListener: (Product) -> Unit): RecyclerView.Adapter<SearchResultsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -50,6 +50,7 @@ class SearchResultsAdapter(var searchResults: List<Product> = emptyList()): Recy
                         this.root.context, if (it.condition == NEW) R.drawable.bg_new_item
                     else R.drawable.bg_used_item)
                     this.textViewFreeDelivery.isVisible = it.isFreeShipping
+                    this.cardViewSearchItem.setOnClickListener { onItemSelectedListener(product) }
                 }
             }
         }

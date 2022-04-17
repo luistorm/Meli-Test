@@ -10,6 +10,7 @@ private const val SEARCH_PATH = "search"
 private const val CATEGORIES_PATH = "categories"
 private const val QUERY = "q"
 private const val CATEGORY = "category"
+private const val SELLER_ID = "seller_id"
 
 interface ProductsService {
 
@@ -25,4 +26,9 @@ interface ProductsService {
 
     @GET(CATEGORIES_PATH)
     fun getCategories(): Single<List<CategoryResponse>>
+
+    @GET(SEARCH_PATH)
+    fun getItemsBySeller(
+        @Query(SELLER_ID) sellerId: String
+    ): Single<SearchQueryResponse>
 }

@@ -8,12 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.luistorm.melitest.R
 import com.luistorm.melitest.databinding.FragmentSearchResultsBinding
+import com.luistorm.melitest.domain.models.Product
 import com.luistorm.melitest.presentation.adapters.SearchResultsAdapter
 import com.luistorm.melitest.presentation.viewmodels.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
-private const val QUERY = "QUERY"
 
 @AndroidEntryPoint
 class SearchResultsFragment : Fragment() {
@@ -44,7 +44,9 @@ class SearchResultsFragment : Fragment() {
         binding.recyclerViewSearch.apply {
             layoutManager = LinearLayoutManager(this@SearchResultsFragment.requireContext(), LinearLayoutManager.VERTICAL, false)
             setHasFixedSize(true)
-            adapter = SearchResultsAdapter()
+            adapter = SearchResultsAdapter {
+                goToProductDetail(it)
+            }
         }
     }
 
@@ -63,7 +65,17 @@ class SearchResultsFragment : Fragment() {
         }
     }
 
+    private fun goToProductDetail(product: Product) {
+        val transaction = parentFragmentManager.beginTransaction()
+        transaction.add(R.id.fragmentsContainer, ProductDetailFragment.newInstance(product), "")
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
     companion object {
+
+        private const val QUERY = "QUERY"
+
         fun newInstance(query: String): SearchResultsFragment = SearchResultsFragment().apply {
             arguments = Bundle().also {
                 it.putString(QUERY, query)

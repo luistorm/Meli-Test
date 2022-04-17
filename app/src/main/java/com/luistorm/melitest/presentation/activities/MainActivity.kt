@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setListeners() {
-        binding.editTextSearch.setOnEditorActionListener { editText, actionId, keyEvent ->
+        binding.editTextSearch.setOnEditorActionListener { editText, actionId, _ ->
             return@setOnEditorActionListener when(actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     if (editText.text.isNotEmpty()) {
@@ -48,14 +48,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun goToSearchResults(query: String) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentsContainer, SearchResultsFragment.newInstance(query), "")
+        transaction.add(R.id.fragmentsContainer, SearchResultsFragment.newInstance(query), "")
         transaction.addToBackStack(null)
         transaction.commit()
     }
 
     private fun goToCategories() {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragmentsContainer, CategoriesFragment.newInstance(), "")
+        transaction.add(R.id.fragmentsContainer, CategoriesFragment.newInstance(), "")
         transaction.commit()
     }
 
@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity() {
             hideKeyboard()
             clearFocus()
         }
-
     }
 
 }
