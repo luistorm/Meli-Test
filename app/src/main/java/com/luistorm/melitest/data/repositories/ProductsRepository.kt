@@ -6,4 +6,8 @@ class ProductsRepository(private val productsService: ProductsService) {
 
     fun searchQuery(query: String) = productsService.searchQuery(query)
 
+    fun getItemsByCategory(category: String) = productsService.getItemsByCategory(category)
+
+    fun getCategories() = productsService.getCategories()
+
 }
