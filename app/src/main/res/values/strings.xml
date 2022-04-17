@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Meli Test</string>
+    <string name="price" translatable="false">$ %1s</string>
+    <string name="available_quantity">Available: %1s</string>
+    <string name="new_item">New</string>
+    <string name="used_item">Used</string>
+    <string name="free_delivery">Free Delivery</string>
 </resources>

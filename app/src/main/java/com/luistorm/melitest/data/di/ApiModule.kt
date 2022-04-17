@@ -1,6 +1,6 @@
 package com.luistorm.melitest.data.di
 
-import com.luistorm.melitest.data.BASE_URL
+import com.luistorm.melitest.data.utils.BASE_URL
 import com.luistorm.melitest.data.services.ProductsService
 import dagger.Module
 import dagger.Provides

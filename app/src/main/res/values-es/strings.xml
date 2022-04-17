@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Meli Test</string>
+    <string name="available_quantity">Disponibles: %1s</string>
+    <string name="new_item">Nuevo</string>
+    <string name="used_item">Usado</string>
+    <string name="free_delivery">Envío Gratis</string>
+</resources>
