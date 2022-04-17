@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luistorm.melitest.databinding.CategoriesItemViewBinding
 import com.luistorm.melitest.domain.models.Category
 
+private const val SERVICIOS = "Servicios"
+
 class CategoriesAdapter(var categories: List<Category> = emptyList()): RecyclerView.Adapter<CategoriesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -29,7 +31,7 @@ class CategoriesAdapter(var categories: List<Category> = emptyList()): RecyclerV
         fun bind(category: Category) {
             binding.apply {
                 category.also {
-                    this.lottieAnimationViewLoader.isVisible = category.products.isNullOrEmpty()
+                    this.lottieAnimationViewLoader.isVisible = category.products.isNullOrEmpty() && category.name != SERVICIOS
                     this.recyclerViewItems.isVisible = category.products.isNullOrEmpty().not()
                     this.textViewCategory.text = it.name
                     this.recyclerViewItems.apply {

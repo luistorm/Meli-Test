@@ -7,8 +7,9 @@
     app:cardElevation="@dimen/search_item_elevation"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginHorizontal="@dimen/search_item_horizontal_margin"
-    android:layout_marginBottom="@dimen/margin_s"
-    app:cardBackgroundColor="@color/white">
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginTop="@dimen/margin_s"
+    android:layout_marginBottom="@dimen/margin_xs">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,13 +27,15 @@
 
         <TextView
             android:id="@+id/textViewTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/empty_size"
             android:layout_height="wrap_content"
             style="@style/titleItem"
             tools:text="Motorola G100"
             app:layout_constraintTop_toTopOf="@id/imageViewThumbnail"
             app:layout_constraintLeft_toRightOf="@id/imageViewThumbnail"
-            android:layout_marginStart="@dimen/margin_s"/>
+            android:layout_marginStart="@dimen/margin_s"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginEnd="@dimen/margin_s"/>
 
         <TextView
             android:id="@+id/textViewPrice"
@@ -72,13 +75,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/descriptionItem"
-            tools:text="Envío Gratis"
+            android:text="@string/free_delivery"
             app:layout_constraintTop_toTopOf="@id/textViewCondition"
             app:layout_constraintLeft_toRightOf="@id/textViewCondition"
             android:layout_marginStart="@dimen/margin_s"
             android:background="@drawable/bg_free_delivery_item"
             android:padding="@dimen/padding_xs"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:visibility="gone"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

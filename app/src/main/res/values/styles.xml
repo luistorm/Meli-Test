@@ -19,4 +19,9 @@
         <item name="android:textColor">@color/price</item>
         <item name="android:textStyle">italic|bold</item>
     </style>
+    <style name="search">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_search</item>
+        <item name="android:background">@color/white</item>
+    </style>
 </resources>

@@ -3,11 +3,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.activities.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerSearch"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/used_item">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/search"
+            android:layout_margin="@dimen/margin_s"
+            android:hint="@string/search_product"
+            android:paddingStart="@dimen/margin_s"
+            android:paddingEnd="@dimen/margin_s"
+            android:lines="1"
+            android:padding="@dimen/margin_s"
+            android:textColorHint="@color/gray"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:drawableStart="@drawable/ic_search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/fragmentsContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="@dimen/empty_size"
+        app:layout_constraintTop_toBottomOf="@id/containerSearch"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

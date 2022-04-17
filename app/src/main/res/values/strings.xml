@@ -5,4 +5,5 @@
     <string name="new_item">New</string>
     <string name="used_item">Used</string>
     <string name="free_delivery">Free Delivery</string>
+    <string name="search_product">Search Product</string>
 </resources>
