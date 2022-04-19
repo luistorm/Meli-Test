@@ -8,4 +8,7 @@
     <string name="search_product">Buscar Producto</string>
     <string name="other_products">Otros Productos Del Vendedor</string>
     <string name="attributes">Atributos:\n%1s</string>
+    <string name="error_categories">Error cargando categorías.\n Intente de nuevo más tarde…</string>
+    <string name="error_search">Error buscando productos</string>
+    <string name="error_other_products">Error cargando otros productos del vendedor</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -14,6 +15,7 @@ import com.luistorm.melitest.R
 import com.luistorm.melitest.databinding.FragmentProductDetailBinding
 import com.luistorm.melitest.domain.models.Product
 import com.luistorm.melitest.presentation.adapters.CategoryItemAdapter
+import com.luistorm.melitest.presentation.models.ProductInfo
 import com.luistorm.melitest.presentation.utils.NEW
 import com.luistorm.melitest.presentation.utils.transformToHttps
 import com.luistorm.melitest.presentation.viewmodels.ProductViewModel
@@ -42,22 +44,41 @@ class ProductDetailFragment : Fragment() {
     }
 
     private fun setObservers() {
-        productViewModel.showLoader.observe(this.viewLifecycleOwner) { showLoader ->
-            binding.lottieAnimationViewLoader.isVisible = showLoader
-        }
-        productViewModel.sellerProducts.observe(this.viewLifecycleOwner) {
-            if (it.isEmpty()) {
-                binding.containerOtherProducts.isVisible = false
-            } else {
-                binding.containerOtherProducts.isVisible = true
-                binding.recyclerViewOther.isVisible = true
-                binding.recyclerViewOther.apply {
-                    adapter = CategoryItemAdapter(it) { product ->
-                        goToProductDetail(product)
-                    }
+        productViewModel.productResults.observe(this.viewLifecycleOwner) {
+            when (it) {
+                is ProductInfo.ProductResponse -> {
+                    showOrHideLoader(false)
+                    drawOtherSellerProducts(it.products)
+                }
+                is ProductInfo.ProductLoader -> showOrHideLoader(it.showLoader)
+                is ProductInfo.ProductError -> {
+                    showOrHideLoader(false)
+                    showOtherProductsError()
                 }
             }
         }
+    }
+
+    private fun showOtherProductsError() {
+        Toast.makeText(requireContext(), R.string.error_other_products, Toast.LENGTH_LONG).show()
+    }
+
+    private fun drawOtherSellerProducts(productsList: List<Product>) {
+        if (productsList.isEmpty()) {
+            binding.containerOtherProducts.isVisible = false
+        } else {
+            binding.containerOtherProducts.isVisible = true
+            binding.recyclerViewOther.isVisible = true
+            binding.recyclerViewOther.apply {
+                adapter = CategoryItemAdapter(productsList) { product ->
+                    goToProductDetail(product)
+                }
+            }
+        }
+    }
+
+    private fun showOrHideLoader(showLoader: Boolean) {
+        binding.lottieAnimationViewLoader.isVisible = showLoader
     }
 
     private fun goToProductDetail(product:Product) {

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.luistorm.melitest.domain.models.Category
 import com.luistorm.melitest.domain.models.Product
 import com.luistorm.melitest.domain.usecases.ProductUseCase
+import com.luistorm.melitest.presentation.models.ProductInfo
 import com.luistorm.melitest.presentation.utils.applySchedulers
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -13,20 +14,17 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductViewModel @Inject constructor(private val productUseCase: ProductUseCase) : ViewModel() {
 
-    private val _showLoader: MutableLiveData<Boolean> = MutableLiveData()
-    val showLoader: LiveData<Boolean> = _showLoader
-    private val _sellerProducts: MutableLiveData<List<Product>> = MutableLiveData()
-    val sellerProducts: LiveData<List<Product>> = _sellerProducts
+    private val _productResults: MutableLiveData<ProductInfo> = MutableLiveData()
+    val productResults: LiveData<ProductInfo> = _productResults
 
     fun getOtherProductsFromSeller(product: Product) {
-        _showLoader.value = true
+        _productResults.value = ProductInfo.ProductLoader(true)
         productUseCase.getItemBySeller(product.seller.id, product.id)
             .applySchedulers()
             .subscribe({
-                _sellerProducts.postValue(it)
-                _showLoader.postValue(false)
+                _productResults.postValue(ProductInfo.ProductResponse(it))
             }, {
-                _showLoader.postValue(false)
+                _productResults.postValue(ProductInfo.ProductError)
             })
     }
 

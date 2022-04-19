@@ -8,4 +8,7 @@
     <string name="search_product">Search Product</string>
     <string name="other_products">Other Products From The Seller</string>
     <string name="attributes">Attributes:\n%1s</string>
+    <string name="error_categories">Error loading categories.\n Please, try again later</string>
+    <string name="error_search">Error searching products</string>
+    <string name="error_other_products">Error loading other products from the seller</string>
 </resources>
