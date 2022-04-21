@@ -1,7 +1,7 @@
 package com.luistorm.melitest.data.services
 
-import com.luistorm.melitest.data.models.remote.CategoryResponse
-import com.luistorm.melitest.data.models.remote.SearchQueryResponse
+import com.luistorm.melitest.data.models.CategoryResponse
+import com.luistorm.melitest.data.models.SearchQueryResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

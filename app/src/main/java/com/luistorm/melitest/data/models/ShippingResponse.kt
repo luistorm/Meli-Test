@@ -1,4 +1,4 @@
-package com.luistorm.melitest.data.models.remote
+package com.luistorm.melitest.data.models
 
 import com.google.gson.annotations.SerializedName
 

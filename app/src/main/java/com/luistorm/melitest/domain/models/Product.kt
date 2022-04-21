@@ -1,7 +1,7 @@
 package com.luistorm.melitest.domain.models
 
 import android.os.Parcelable
-import com.luistorm.melitest.data.models.remote.ProductItemResponse
+import com.luistorm.melitest.data.models.ProductItemResponse
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
