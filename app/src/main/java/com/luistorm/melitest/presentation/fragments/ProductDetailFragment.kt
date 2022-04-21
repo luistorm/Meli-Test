@@ -95,7 +95,9 @@ class ProductDetailFragment : Fragment() {
         }
         arguments?.let {
             val product = it.getParcelable(PRODUCT) ?: Product()
-            productViewModel.getOtherProductsFromSeller(product)
+            if (productViewModel.productResults.value == null) {
+                productViewModel.getOtherProductsFromSeller(product)
+            }
             drawInfo(product)
         }
         binding.imageViewBack.setOnClickListener {

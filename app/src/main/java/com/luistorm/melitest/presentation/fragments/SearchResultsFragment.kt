@@ -61,6 +61,7 @@ class SearchResultsFragment : Fragment() {
                         drawProducts(it.products)
                     } else {
                         showSearchError()
+                        parentFragmentManager.popBackStack()
                     }
                 }
                 is ProductInfo.ProductLoader -> showOrHideLoader(it.showLoader)

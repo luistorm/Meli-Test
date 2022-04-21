@@ -15,13 +15,25 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var somethingWasSearched: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        goToCategories()
+        savedInstanceState?.let {
+            if (it.getBoolean(ACTIVITY_LOADED, false).not()) {
+                goToCategories()
+            }
+        } ?: run {
+            goToCategories()
+        }
         setListeners()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putBoolean(ACTIVITY_LOADED, true)
     }
 
     private fun setListeners() {
@@ -31,17 +43,14 @@ class MainActivity : AppCompatActivity() {
                     if (editText.text.isNotEmpty()) {
                         editText.hideKeyboard()
                         goToSearchResults(editText.text.toString())
+                        somethingWasSearched = true
+                    } else if(somethingWasSearched) {
+                        supportFragmentManager.popBackStack()
+                        somethingWasSearched = false
                     }
                     true
                 }
                 else -> false
-            }
-        }
-        binding.editTextSearch.addTextChangedListener { text ->
-            text?.let {
-                if (it.toString().isEmpty()) {
-                    goToCategories()
-                }
             }
         }
     }
@@ -66,6 +75,10 @@ class MainActivity : AppCompatActivity() {
             hideKeyboard()
             clearFocus()
         }
+    }
+
+    companion object {
+        private const val ACTIVITY_LOADED = "ACTIVITY_LOADED"
     }
 
 }
