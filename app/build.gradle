@@ -47,9 +47,15 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$rootProject.ext.fragmentVersion"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
-    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    implementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$rootProject.ext.junitTestExtVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.ext.espressoVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.mockitoVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$rootProject.ext.mockitoKotlin2Version"
+    testImplementation "io.mockk:mockk:$rootProject.ext.mockkVersion"
+    testImplementation "io.mockk:mockk-agent-jvm:$rootProject.ext.mockkVersion"
+    testImplementation "androidx.arch.core:core-testing:$rootProject.ext.testArchCoreVersion"
+
 
     implementation "com.google.dagger:hilt-android:$rootProject.ext.hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.ext.hiltVersion"

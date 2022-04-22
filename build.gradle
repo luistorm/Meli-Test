@@ -35,4 +35,8 @@ ext {
     loggingVersion = '4.9.3'
     glideVersion = '4.13.0'
     lottieVersion = '5.0.3'
+    mockitoVersion = '4.5.0'
+    mockitoKotlin2Version = '2.2.0'
+    mockkVersion = '1.12.3'
+    testArchCoreVersion = '2.1.0'
 }
